@@ -1,0 +1,17 @@
+!• Note that TINYINT may map to Byte or Integer and SMALLINT may map to Short or Integer  (similar to how the JVM promotes them to ints internally)
+
+• BOOLEAN = java.lang.Boolean
+• TINYINT = java.lang.Byte or java.lang.Integer
+• SMALLINT = java.lang.Short or java.lang.Integer
+• INT = java.lang.Integer
+• BIGINT = java.lang.Long
+• REAL = java.lang.Float
+• DOUBLE = java.lang.Double
+
+• VARCHAR, CHAR = java.lang.String
+• BYTEA, VARBINARY, BINARY = byte[]
+	+ In Java, a byte[] is preferred (and is meant to be treated as an immutable value), but a Slice<byte[]> and ByteList are also handled by middleware
+
+• UUID = java.util.UUID
+
++ Note that BLOBs, CLOBs, DATEs, TIMEs, and DATETIMEs may not be supported by SimpleSQL implementations!  (but really, who uses those anyway when you can store huge data outside the SQL database instead of as BLOBs/CLOBs, and store dates/times as reliable integers (eg, minutes or seconds in a day for time, Julian day number for just-dates, and milliseconds-since-epoch for datetimes/timestamps) and not have to worry about one of the many layers screwing up the timezone or calendar or precision or scale or etc.? xD )
