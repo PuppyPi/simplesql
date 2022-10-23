@@ -63,6 +63,11 @@ public class CustomBinarySnapshotUtilities
 					closeWithoutError(lowlevel);
 					tempFile.delete();
 				}
+				else
+				{
+					//Return to the start for reading!
+					lowlevel.seekToStart();
+				}
 				
 				@Nullable Runnable onClose = numberOfRows == 0 ? null : () ->
 				{
@@ -70,9 +75,6 @@ public class CustomBinarySnapshotUtilities
 					tempFile.delete();
 				};
 				
-				
-				//Return to the start for reading!
-				lowlevel.seekToStart();
 				
 				CustomBinarySnapshotSimpleSQLResultsReader r = new CustomBinarySnapshotSimpleSQLResultsReader(numberOfRows, lowlevel, columnDatatypes, onClose);
 				success = true;
