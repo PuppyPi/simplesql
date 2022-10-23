@@ -60,8 +60,14 @@ public class CustomBinarySnapshotUtilities
 				
 				if (numberOfRows == 0)
 				{
-					closeWithoutError(lowlevel);
-					tempFile.delete();
+					try
+					{
+						closeWithoutError(lowlevel);
+					}
+					finally
+					{
+						tempFile.delete();
+					}
 				}
 				else
 				{
@@ -71,8 +77,14 @@ public class CustomBinarySnapshotUtilities
 				
 				@Nullable Runnable onClose = numberOfRows == 0 ? null : () ->
 				{
-					closeWithoutError(lowlevel);
-					tempFile.delete();
+					try
+					{
+						closeWithoutError(lowlevel);
+					}
+					finally
+					{
+						tempFile.delete();
+					}
 				};
 				
 				
