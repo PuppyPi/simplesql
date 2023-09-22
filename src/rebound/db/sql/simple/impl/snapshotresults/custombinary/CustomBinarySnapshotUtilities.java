@@ -19,7 +19,7 @@ import rebound.util.functional.throwing.FunctionalInterfacesThrowingCheckedExcep
 
 public class CustomBinarySnapshotUtilities
 {
-	public static final NullaryFunctionThrowingIOException<File> DefaultTemporaryFileMaker = () -> File.createTempFile("simplesql-snapshot-buffer", ".ssqldata");
+	public static final NullaryFunctionThrowingIOException<File> DefaultTemporaryFileMaker = () -> File.createTempFile("simplesql-snapshot-buffer-", ".ssqldata");
 	
 	
 	public static SimpleSQLRandomAccessResults performLocallyBufferedSnapshotting(SimpleSQLResults underlying)
